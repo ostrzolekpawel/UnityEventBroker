@@ -1,0 +1,23 @@
+{
+    "name": "EventBroker.UniTask",
+    "rootNamespace": "",
+    "references": [
+        "EventBroker.Core",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "",
+            "define": "EVENTBROKER_UNITASK_ENABLED"
+        }
+    ],
+    "noEngineReferences": false
+}
