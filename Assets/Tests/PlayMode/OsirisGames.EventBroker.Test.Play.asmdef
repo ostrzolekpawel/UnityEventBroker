@@ -4,7 +4,7 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "EventBroker.Core"
+        "OsirisGames.EventBroker.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
