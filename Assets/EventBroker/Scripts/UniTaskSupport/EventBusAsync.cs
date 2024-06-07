@@ -1,3 +1,4 @@
+#if EVENTBROKER_UNITASK_ENABLED
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
@@ -60,3 +61,4 @@ namespace OsirisGames.EventBroker
         }
     }
 }
+#endif

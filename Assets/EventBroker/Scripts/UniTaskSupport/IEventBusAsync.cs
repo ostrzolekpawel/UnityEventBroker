@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿#if EVENTBROKER_UNITASK_ENABLED
+using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
 
@@ -11,3 +12,4 @@ namespace OsirisGames.EventBroker
         void Unsubscribe<T>(Func<T, UniTask> action);
     }
 }
+#endif
