@@ -10,6 +10,11 @@ namespace OsirisGames.EventBroker
 
         public void Subscribe<T>(Action<T> action)
         {
+            if (action == null)
+            {
+                throw new ArgumentNullException("Action to subscribe can't be null");
+            }
+
             Type type = typeof(T);
             if (!_subscriptions.ContainsKey(type))
             {
@@ -33,6 +38,11 @@ namespace OsirisGames.EventBroker
 
         public void Unsubscribe<T>(Action<T> action)
         {
+            if (action == null)
+            {
+                throw new ArgumentNullException("Action to unsubscribe can't be null");
+            }
+
             Type type = typeof(T);
             if (_subscriptions.ContainsKey(type))
             {
