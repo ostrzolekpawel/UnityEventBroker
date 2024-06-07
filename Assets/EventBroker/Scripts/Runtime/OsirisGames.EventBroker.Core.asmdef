@@ -1,5 +1,5 @@
 {
-    "name": "EventBroker.Core",
+    "name": "OsirisGames.EventBroker.Core",
     "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
