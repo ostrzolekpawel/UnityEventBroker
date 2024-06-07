@@ -4,13 +4,6 @@ using System.Linq;
 
 namespace OsirisGames.EventBroker
 {
-    public interface IEventBus
-    {
-        void Subscribe<T>(Action<T> action);
-        void Fire<T>(T signal);
-        void Unsubscribe<T>(Action<T> action);
-    }
-
     public class EventBus : IEventBus
     {
         private readonly Dictionary<Type, List<Delegate>> _subscriptions = new Dictionary<Type, List<Delegate>>();

@@ -6,13 +6,6 @@ using System.Threading;
 
 namespace OsirisGames.EventBroker
 {
-    public interface IEventBusAsync
-    {
-        void Subscribe<T>(Func<T, UniTask> action);
-        UniTask Fire<T>(T signal, CancellationToken token = default);
-        void Unsubscribe<T>(Func<T, UniTask> action);
-    }
-
     public class EventBusAsync : IEventBusAsync
     {
         private readonly Dictionary<Type, List<Delegate>> _subscriptions = new Dictionary<Type, List<Delegate>>();
