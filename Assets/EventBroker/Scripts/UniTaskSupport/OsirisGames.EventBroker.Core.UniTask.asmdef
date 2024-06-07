@@ -1,8 +1,7 @@
 {
-    "name": "EventBroker.UniTask",
+    "name": "OsirisGames.EventBroker.Core.UniTask",
     "rootNamespace": "",
     "references": [
-        "EventBroker.Core",
         "UniTask"
     ],
     "includePlatforms": [],
