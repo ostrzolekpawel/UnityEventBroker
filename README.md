@@ -69,6 +69,55 @@ IEventBus _eventBus = new EventBus();
 
 Subscribe to EventBus // add information that it's type related
 
+```cs
+public class RewardCollectAnimation
+{
+    public int Amount { get; }
+
+    public RewardCollectAnimation(int amount)
+    {
+        Amount = amount;
+    }
+}
+
+public class RewardCollection : IDisposable
+{
+    private readonly IEventBus _eventBus;
+
+    public RewardCollection(IEventBus eventBus)
+    {
+        eventBus.Subscribe<RewardCollectAnimation>(CollectReward);
+        _eventBus = eventBus;
+    }
+
+    private void CollectReward(RewardCollectAnimation caller)
+    {
+        // do some staff
+    }
+
+    public void Dispose()
+    {
+        _eventBus.Unsubscribe<RewardCollectAnimation>(CollectReward);
+    }
+}
+
+public class RewardCaller
+{
+    private readonly IEventBus _eventBus;
+
+    public RewardCaller(IEventBus eventBus)
+    {
+        _eventBus = eventBus;
+    }
+
+    public void Collect()
+    {
+        _eventBus.Fire(new RewardCollectAnimation(5));
+    }
+}
+
+```
+
 ## Async calls
 
 For projects which use assembly definitions add to references `OsirisGames.EventBroker.Core`, `OsirisGames.EventBroker.Core.UniTask`
