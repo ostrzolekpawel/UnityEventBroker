@@ -61,13 +61,13 @@ For projects which use assembly definitions add to references `OsirisGames.Event
 
 ### Usage Example
 
-First create instance `EventBus` or your own implementation which implements `IEventBus` interface.
+First create instance of `EventBus` or your own implementation which implements `IEventBus` interface.
 
 ```cs
 IEventBus _eventBus = new EventBus();
 ```
 
-Subscribe to EventBus // add information that it's type related
+Create class which will be representation of event
 
 ```cs
 public class RewardCollectAnimation
@@ -79,7 +79,11 @@ public class RewardCollectAnimation
         Amount = amount;
     }
 }
+```
 
+Subscribe to event
+
+```cs
 public class RewardCollection : IDisposable
 {
     private readonly IEventBus _eventBus;
@@ -100,7 +104,10 @@ public class RewardCollection : IDisposable
         _eventBus.Unsubscribe<RewardCollectAnimation>(CollectReward);
     }
 }
+```
 
+Call event
+```cs
 public class RewardCaller
 {
     private readonly IEventBus _eventBus;
@@ -129,4 +136,62 @@ First create instance `EventBusAsync` or your own implementation which implement
 
 ```cs
 IEventBusAsync _eventBus = new EventBusAsync();
+```
+
+Create class which will be representation of event
+
+```cs
+public class RewardCollectAnimation
+{
+    public int Amount { get; }
+
+    public RewardCollectAnimation(int amount)
+    {
+        Amount = amount;
+    }
+}
+```
+
+Subscribe to event
+
+```cs
+public class RewardCollection : IDisposable
+{
+    private readonly IEventBusAsync _eventBus;
+
+    public RewardCollection(IEventBusAsync eventBus)
+    {
+        eventBus.Subscribe<RewardCollectAnimation>(CollectReward);
+        _eventBus = eventBus;
+    }
+
+    private async UniTask CollectReward(RewardCollectAnimation caller)
+    {
+        // do some staff
+    }
+
+    public void Dispose()
+    {
+        _eventBus.Unsubscribe<RewardCollectAnimation>(CollectReward);
+    }
+}
+```
+
+Call event
+```cs
+public class RewardCaller
+{
+    private readonly IEventBusAsync _eventBus;
+
+    public RewardCaller(IEventBusAsync eventBus)
+    {
+        _eventBus = eventBus;
+    }
+
+    public async UniTask Collect(CancellationToken token)
+    {
+        await _eventBus.Fire(new RewardCollectAnimation(5), token);
+    }
+}
+
 ```
