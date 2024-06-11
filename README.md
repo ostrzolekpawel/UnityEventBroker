@@ -127,7 +127,7 @@ public class RewardCaller
 
 ## Async calls
 
-For projects which use assembly definitions add to references `OsirisGames.EventBroker.Core`, `OsirisGames.EventBroker.Core.UniTask`
+For projects which use assembly definitions add to references `OsirisGames.EventBroker.CoreAsync`
 and also add to define symbols **`EVENTBROKER_UNITASK_ENABLED`**
 
 ### Usage Example
