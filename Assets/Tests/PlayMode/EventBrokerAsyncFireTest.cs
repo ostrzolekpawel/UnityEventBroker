@@ -25,7 +25,7 @@ public class EventBrokerAsyncFireTest
 
             // Act
             eventBus.Subscribe(action);
-            await eventBus.Fire("Test Event");
+            await eventBus.FireAsync("Test Event");
 
             // Assert
             Assert.IsTrue(eventFired);
@@ -51,7 +51,7 @@ public class EventBrokerAsyncFireTest
         // Act
         eventBus.Subscribe(action1);
         eventBus.Subscribe(action2);
-        await eventBus.Fire(5);
+        await eventBus.FireAsync(5);
 
         // Assert
         Assert.AreEqual(15, counter);
@@ -72,7 +72,7 @@ public class EventBrokerAsyncFireTest
         // Act
         eventBus.Subscribe(action);
         eventBus.Subscribe(action);
-        await eventBus.Fire(5);
+        await eventBus.FireAsync(5);
 
         // Assert
         Assert.AreEqual(10, eventCount);
@@ -85,7 +85,7 @@ public class EventBrokerAsyncFireTest
         var eventBus = new EventBusAsync();
 
         // Act && Assert
-        Assert.DoesNotThrow(() => eventBus.Fire("Test Event").Forget());
+        Assert.DoesNotThrow(() => eventBus.FireAsync("Test Event").Forget());
     }
 
     [UnityTest]
@@ -102,7 +102,7 @@ public class EventBrokerAsyncFireTest
 
             // Act
             eventBus.Subscribe(action);
-            await eventBus.Fire<string>(null);
+            await eventBus.FireAsync<string>(null);
 
             // Assert
             Assert.IsTrue(eventFired);
@@ -129,7 +129,7 @@ public class EventBrokerAsyncFireTest
         eventBus.Subscribe(action2);
 
         var stopwatch = Stopwatch.StartNew();
-        await eventBus.Fire<string>(null);
+        await eventBus.FireAsync<string>(null);
         stopwatch.Stop();
 
         // Assert
@@ -157,7 +157,7 @@ public class EventBrokerAsyncFireTest
         eventBus.Subscribe(action2);
 
         var stopwatch = Stopwatch.StartNew();
-        await eventBus.Fire<string>(null);
+        await eventBus.FireAsync<string>(null);
         stopwatch.Stop();
 
         // Assert

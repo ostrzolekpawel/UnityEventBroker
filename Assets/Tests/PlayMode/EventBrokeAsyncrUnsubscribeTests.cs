@@ -21,10 +21,10 @@ public class EventBrokeAsyncrUnsubscribeTests
 
         // Act
         eventBus.Subscribe(action);
-        await eventBus.Fire("Test Event");
+        await eventBus.FireAsync("Test Event");
         eventBus.Unsubscribe(action);
         eventFired = false;
-        await eventBus.Fire("Test Event");
+        await eventBus.FireAsync("Test Event");
 
         // Assert
         Assert.IsFalse(eventFired);
@@ -69,7 +69,7 @@ public class EventBrokeAsyncrUnsubscribeTests
         eventBus.Subscribe(action);
         eventBus.Subscribe(action);
         eventBus.Unsubscribe(action);
-        await eventBus.Fire(5);
+        await eventBus.FireAsync(5);
 
         // Assert
         Assert.AreEqual(2, eventCount);

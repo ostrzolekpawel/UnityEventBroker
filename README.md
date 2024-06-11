@@ -50,7 +50,7 @@ public interface IEventBus
 public interface IEventBusAsync
 {
     void Subscribe<T>(Func<T, UniTask> action);
-    UniTask Fire<T>(T signal, CancellationToken token = default);
+    UniTask FireAsync<T>(T signal, CancellationToken token = default);
     void Unsubscribe<T>(Func<T, UniTask> action);
 }
 ```
@@ -61,7 +61,7 @@ For projects which use assembly definitions add to references `OsirisGames.Event
 
 ### Usage Example
 
-First create instance of `EventBus` or your own implementation which implements `IEventBus` interface.
+First create instance of `EventBus` or your own implementation of `IEventBus` interface.
 
 ```cs
 IEventBus _eventBus = new EventBus();
@@ -132,7 +132,7 @@ and also add to define symbols **`EVENTBROKER_UNITASK_ENABLED`**
 
 ### Usage Example
 
-First create instance `EventBusAsync` or your own implementation which implements `IEventBusAsync` interface.
+First create instance `EventBusAsync` or your own implementation of `IEventBusAsync` interface.
 
 ```cs
 IEventBusAsync _eventBus = new EventBusAsync();
@@ -190,7 +190,7 @@ public class RewardCaller
 
     public async UniTask Collect(CancellationToken token)
     {
-        await _eventBus.Fire(new RewardCollectAnimation(5), token);
+        await _eventBus.FireAsync(new RewardCollectAnimation(5), token);
     }
 }
 

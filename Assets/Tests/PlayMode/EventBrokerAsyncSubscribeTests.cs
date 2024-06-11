@@ -21,7 +21,7 @@ public class EventBrokerAsyncSubscribeTests
 
         // Act
         eventBus.Subscribe(action);
-        await eventBus.Fire("Test Event");
+        await eventBus.FireAsync("Test Event");
 
         // Assert
         Assert.IsTrue(eventFired);
@@ -53,7 +53,7 @@ public class EventBrokerAsyncSubscribeTests
         eventBus.Subscribe(action);
         eventBus.Subscribe(action);
         eventBus.Subscribe(action);
-        await eventBus.Fire("Test Event");
+        await eventBus.FireAsync("Test Event");
 
         // Assert
         Assert.AreEqual(3, invocationCount);

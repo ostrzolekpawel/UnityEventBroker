@@ -27,7 +27,7 @@ namespace OsirisGames.EventBroker
             _subscriptions[type].Add(action);
         }
 
-        public async UniTask Fire<T>(T signal, CancellationToken token = default)
+        public async UniTask FireAsync<T>(T signal, CancellationToken token = default)
         {
             Type type = typeof(T);
             if (_subscriptions.ContainsKey(type))
