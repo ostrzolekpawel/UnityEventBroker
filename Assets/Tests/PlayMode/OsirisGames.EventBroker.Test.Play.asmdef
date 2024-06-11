@@ -4,7 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "OsirisGames.EventBroker.Core"
+        "OsirisGames.EventBroker.CoreAsync",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
