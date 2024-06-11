@@ -3,6 +3,8 @@ using NUnit.Framework;
 using OsirisGames.EventBroker;
 using System;
 using System.Collections;
+using System.Diagnostics;
+using UnityEngine;
 using UnityEngine.TestTools;
 
 public class EventBrokerAsyncFireTest
@@ -104,5 +106,61 @@ public class EventBrokerAsyncFireTest
 
             // Assert
             Assert.IsTrue(eventFired);
+    });
+
+    [UnityTest]
+    public IEnumerator Fire_WillFinish_AfterLongestAction() => UniTask.ToCoroutine(async () =>
+    {
+        // Arrange
+        var eventBus = new EventBusAsync();
+
+        Func<string, UniTask> action1 = async (message) =>
+        {
+            await UniTask.Delay(1000);
+        };
+
+        Func<string, UniTask> action2 = async (message) =>
+        {
+            await UniTask.Delay(2000);
+        };
+
+        // Act
+        eventBus.Subscribe(action1);
+        eventBus.Subscribe(action2);
+
+        var stopwatch = Stopwatch.StartNew();
+        await eventBus.Fire<string>(null);
+        stopwatch.Stop();
+
+        // Assert
+        Assert.True(Mathf.Abs(stopwatch.ElapsedMilliseconds - 2000) < 100);
+    });
+
+    [UnityTest]
+    public IEnumerator Fire_WillFinish_AfterLongestAction2() => UniTask.ToCoroutine(async () =>
+    {
+        // Arrange
+        var eventBus = new EventBusAsync();
+
+        Func<string, UniTask> action1 = async (message) =>
+        {
+            await UniTask.Delay(2000);
+        };
+
+        Func<string, UniTask> action2 = async (message) =>
+        {
+            await UniTask.Delay(1000);
+        };
+
+        // Act
+        eventBus.Subscribe(action1);
+        eventBus.Subscribe(action2);
+
+        var stopwatch = Stopwatch.StartNew();
+        await eventBus.Fire<string>(null);
+        stopwatch.Stop();
+
+        // Assert
+        Assert.True(Mathf.Abs(stopwatch.ElapsedMilliseconds - 2000) < 100);
     });
 }
