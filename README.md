@@ -19,7 +19,7 @@ Add link to package from repository directly to manifest.json
     "dependencies": {
         // other packages
         // ...
-        "com.osirisgames.unityeventbroker": "https://github.com/ostrzolekpawel/UnityEventBroker.git?path=Assets/EventBroker"
+        "com.osirisgames.eventbroker": "https://github.com/ostrzolekpawel/UnityEventBroker.git?path=Assets/EventBroker"
     }
 }
 ```
