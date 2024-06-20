@@ -8,7 +8,7 @@ There is several options to install this package:
 
 ### Unity Package Manager
 
-Open Unity Package Manager and go to **Add package from git URL...** and paste [https://github.com/ostrzolekpawel/UnityEventBroker.git?path=Assets/EventBroker/Assets](https://github.com/ostrzolekpawel/UnityEventBroker.git?path=Assets/EventBroker/Assets)
+Open Unity Package Manager and go to **Add package from git URL...** and paste [https://github.com/ostrzolekpawel/UnityEventBroker.git?path=Assets/EventBroker](https://github.com/ostrzolekpawel/UnityEventBroker.git?path=Assets/EventBroker)
 
 ### Manifest
 Add link to package from repository directly to manifest.json
@@ -19,7 +19,7 @@ Add link to package from repository directly to manifest.json
     "dependencies": {
         // other packages
         // ...
-        "com.osirisgames.unityeventbroker": "https://github.com/ostrzolekpawel/UnityEventBroker.git?path=Assets/EventBroker/Assets"
+        "com.osirisgames.unityeventbroker": "https://github.com/ostrzolekpawel/UnityEventBroker.git?path=Assets/EventBroker"
     }
 }
 ```
